@@ -6,6 +6,10 @@ use once_cell::sync::OnceCell;
 #[path = "windows.rs"]
 mod platform_impl;
 
+#[cfg(not(target_os = "windows"))]
+#[path = "unix.rs"]
+mod platform_impl;
+
 static ID: OnceCell<String> = OnceCell::new();
 
 /// This function is meant for use-cases where the default [`prepare()`] function can't be used.
